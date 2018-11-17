@@ -1,0 +1,47 @@
+import Mutuales.*
+import Socios.*
+
+describe"instancio los objetos"{
+	const viajePlaya1 = new ViajePlaya(largoPlaya = 1000)
+	const viajePlaya2 = new ViajePlaya(largoPlaya = 2000)
+	const aruba = new CiudadTropical(atraccionesAVisitar= 8)
+	const buenosAires = new Ciudad(atraccionesAVisitar= 4)
+	const viajeCiudadTropical = new Viaje (idiomas =["quechua", "aymara"], tipoActividad = aruba)
+	const actividadCiudadBuenosAires = new Viaje (idiomas =["quechua", "aymara"], tipoActividad = buenosAires)
+	const salidaTrekking1 = new SalidaTrekking(kmSenderos = 100, diasDeSol = 130)
+	const actividadSalidaTrekking = new Viaje (idiomas =["quechua", "aymara"], tipoActividad = salidaTrekking1)
+	const roque = new Socio(actividades=[viajePlaya1,viajePlaya2], cantMaximaDeActividades = 2, edad = 28, tipoSocio = tranquilo)
+	
+
+
+test "una excursión a ciudad tropical en la que se visitan 8 atracciones, lleva 5 días, implica esfuerzo, y sirve para broncearse." {
+
+	assert.that(viajeCiudadTropical.hacerViajeImplicaEsfuerzo())
+	assert.that(viajeCiudadTropical.sirveParaBroncearse())
+}
+test "poder consultar la colección de actividades esforzadas, o sea, las actividades que realizó que implican esfuerzo."{
+	
+	assert.equals([viajePlaya2], roque.actividadesConEsfuerzo())
+	
+}
+test"una excursión a ciudad normal (no tropical) en la que se visitan 4 atracciones, lleva 2 días, no implica esfuerzo, y no sirve para broncearse."
+	{
+	
+	assert.equals(2,actividadCiudadBuenosAires.diasQuellevaLaActividad())
+	assert.notThat(actividadCiudadBuenosAires.hacerViajeImplicaEsfuerzo())
+	assert.notThat(actividadCiudadBuenosAires.sirveParaBroncearse())
+	
+}
+
+test"una salida de 100 kilómetros a un lugar con 130 días de sol por año: lleva 2 días, implica esfuerzo, y no sirve para broncearse."{
+	assert.equals(2,actividadSalidaTrekking.diasQuellevaLaActividad())
+	assert.that(actividadSalidaTrekking.hacerViajeImplicaEsfuerzo())
+	assert.notThat(actividadSalidaTrekking.sirveParaBroncearse())
+		
+}
+
+test "roque.esAdoradorDelSol() devuelve true."{
+	    roque.esAdoradorDelSol()
+}
+
+}
