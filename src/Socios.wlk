@@ -5,7 +5,7 @@ class Socio{
 		const cantMaximaDeActividades
 		var property edad
 		var idiomas=[]
-		var tipoSocio
+		var tipoSocio // No se usa
 		
 		method registrarActividad(unaActividad){
 			if (actividades.size()<cantMaximaDeActividades)
@@ -33,9 +33,9 @@ class Socio{
 
 }	 
 
-object tranquilo inherits Socio{
+object tranquilo inherits Socio{ // Deberian ser clase. hay muchos socios tranquilos, cada uno con sus actividades
 	
-		method esAtractiva(){
+		method esAtractiva(){ //Falta recibir la actividad. 
 		return actividades.any{unaActividad => unaActividad.tiempoViaje() > 4}
 		}
 }
@@ -50,6 +50,7 @@ object coherente inherits Socio{
 object relajado inherits Socio{
 		method esAtractiva(){
 		return	idiomas.any{unIdioma => actividades.forEach{unaActividad=> unaActividad.idioma().contains(unIdioma)}}
+		//Mal usado el foreach
 		}
 }
 
