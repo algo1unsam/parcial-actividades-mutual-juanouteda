@@ -3,7 +3,7 @@ import Socios.*
 class Viaje{
 	
 	  var property idiomas = []
-	  var tipoActividad
+	  var tipoActividad //Mal usada esta variable, los tipos de actividades son subclases
 	  
 	  method hacerViajeImplicaEsfuerzo(){
 	  return tipoActividad.implicaEsfuerzo()
@@ -99,7 +99,7 @@ class SalidaTrekking inherits Viaje{
 
 class ClaseGimnasia inherits Viaje{
 		
-		method seManejaUnSoloIdioma(){
+		method seManejaUnSoloIdioma(){ //Confunde efecto con devolución
 			idiomas = ["espaniol"]
 			return idiomas
 		}
